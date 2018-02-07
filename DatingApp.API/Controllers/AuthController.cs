@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
 using DatingApp.API.Models;
+using DatingApp.API.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -63,7 +64,9 @@ namespace DatingApp.API.Controllers {
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            return Ok(tokenString);
+            return Ok(new AuthResponse {
+                TokenString = tokenString
+            });
         }
     }
 }

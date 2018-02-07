@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-  baseUrl = 'http://localhost:5000/api/auth';
+  baseUrl = 'http://localhost:5000/api/auth/';
   userToken: any;
 
 constructor(
@@ -15,6 +15,7 @@ constructor(
 httpLogin(model: any) {
   const headers = new Headers({'Content-Type': 'application/json'});
   const options = new RequestOptions({headers: headers});
+
   return this._http.post(this.baseUrl + 'login', model, options)
     .map((res: Response) => {
       const user = res.json();

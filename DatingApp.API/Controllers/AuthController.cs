@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DatingApp.API.Controllers {
     [AllowAnonymous]
-    [Route ("api/[controller]")]
+    [Route ("api/auth")]
     public class AuthController : Controller {
         private readonly IAuthRepository _repo;
         public AuthController (IAuthRepository repo) {

@@ -23,6 +23,8 @@
     "@angular/platform-browser": "5.2.3",
     "@angular/platform-browser-dynamic": "5.2.3",
     "@angular/router": "5.2.3",
+    "alertifyjs": "^1.11.1",
+    "angular-jwt": "^0.1.9",
     "bootstrap": "3.3.7",
     "core-js": "2.5.3",
     "font-awesome": "4.7.0",

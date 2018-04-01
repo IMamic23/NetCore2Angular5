@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
       data => {
         console.log('Logged in');
       }, err => {
-        console.log('Cant login');
+        console.log(err);
         throw err;
       }
     );

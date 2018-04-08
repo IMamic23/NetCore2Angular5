@@ -11,7 +11,7 @@ export class NavComponent implements OnInit {
   model: any = {};
 
   constructor(
-    private _authService: AuthService,
+    public authService: AuthService,
     private _aleftify: AlertifyService
   ) { }
 
@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    this._authService.httpLogin(this.model).subscribe(
+    this.authService.httpLogin(this.model).subscribe(
       data => {
           this._aleftify.success('Logged in successfully');
         }, err => {
@@ -30,13 +30,13 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    this._authService.userToken = null;
+    this.authService.userToken = null;
     this._aleftify.message('Logged out');
     localStorage.removeItem('token');
   }
 
   loggedIn() {
-    return this._authService.loggedIn();
+    return this.authService.loggedIn();
   }
 
 }

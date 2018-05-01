@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http/src/client';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
@@ -15,13 +15,21 @@ export class UserService {
   baseUrl = environment.apiUrl;
 
   constructor(
-    private _http: Http
+    private _http: HttpClient
   ) { }
 
   getUsers(): Observable<User[]> {
-    return this._http.get(this.baseUrl + 'users', this.jwt())
-      .map(response => <User[]>response.json())
-      .catch(this.handleError);
+    return this._http.get(this.baseUrl + 'users')
+      .map(response =>  {
+        return response;
+      }).catch(this.handleError);
+  }
+
+  getUser(id: number): Observable<User> {
+    return this._http.get(this.baseUrl + 'users/' + id)
+      .map(res => {
+        return res;
+      }).catch(this.handleError);
   }
 
   private jwt() {

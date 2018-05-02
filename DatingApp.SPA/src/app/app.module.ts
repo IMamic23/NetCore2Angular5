@@ -24,6 +24,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { UserService } from './_services/user.service';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -47,6 +48,7 @@ export function tokenGetter() {
     HttpModule,
     HttpClientModule,
     FormsModule,
+    NgxGalleryModule,
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     JwtModule.forRoot({

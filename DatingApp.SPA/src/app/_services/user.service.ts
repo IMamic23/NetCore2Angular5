@@ -32,6 +32,11 @@ export class UserService {
       }).catch(this.handleError);
   }
 
+  updateUser(id: number, user: User) {
+    return this._http.put(this.baseUrl + '/users/' + id, user)
+      .catch(this.handleError);
+  }
+
   private jwt() {
     const token = localStorage.getItem('token');
     if (token) {

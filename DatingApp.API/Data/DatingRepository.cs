@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DatingApp.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,11 @@ namespace DatingApp.API.Data {
 
         public void Delete<T> (T entity) where T : class {
             _ctx.Remove(entity);
+        }
+
+        public Task<Photo> GetMainPhoto(int userId)
+        {
+            return _ctx.Photos.FirstOrDefaultAsync(u => u.UserId == userId && u.IsMain);
         }
 
         public Task<Photo> GetPhoto(int id)

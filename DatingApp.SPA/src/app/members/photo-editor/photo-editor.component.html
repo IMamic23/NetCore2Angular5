@@ -2,10 +2,11 @@
   <div class="col-md-2" *ngFor="let photo of photos">
     <img class="thumbnail" src="{{ photo.url }}" alt="">
     <div class="text-center">
-      <button type="button" class="btn btn-xs">
+      <button type="button" class="btn btn-xs" [disabled]="photo.isMain"
+        [ngClass]="photo.isMain ? 'btn-success active' : 'btn-default'" (click)="setMainPhoto(photo)">
         Main
       </button>
-      <button type="button" class="btn btn-danger btn-xs">
+      <button type="button" class="btn btn-danger btn-xs" [disabled]="photo.isMain" (click)="deletePhoto(photo.id)">
         <i class="fa fa-trash-o"></i>
       </button>
     </div>

@@ -7,17 +7,26 @@ import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { JwtHelperService  } from '@auth0/angular-jwt';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../_models/User';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthService {
   baseUrl = 'http://localhost:5000/api/auth/';
   userToken: any;
   decodedToken: any;
+  currentUser: User;
   jwtHelper: JwtHelperService  = new JwtHelperService ();
+  private _photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+  currentPhotoUrl = this._photoUrl.asObservable();
 
   constructor(
     private _http: HttpClient
     ) { }
+
+    changeMemberPhoto(photoUrl: string) {
+      this._photoUrl.next(photoUrl);
+    }
 
   httpLogin(model: any) {
     return this._http.post(this.baseUrl + 'login', model)
@@ -25,8 +34,11 @@ export class AuthService {
         const user = res.json();
         if (user && user.tokenString)
           localStorage.setItem('token', user.tokenString);
+          localStorage.setItem('user', JSON.stringify(user.user));
           this.decodedToken = this.jwtHelper.decodeToken(user.tokenString);
+          this.currentUser = user.user;
           this.userToken = user.tokenString;
+          this.changeMemberPhoto(this.currentUser.photoUrl);
       }).catch(this.handleError);
   }
 

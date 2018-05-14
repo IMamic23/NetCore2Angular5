@@ -37,6 +37,17 @@ export class UserService {
       .catch(this.handleError);
   }
 
+  setMainPhoto(userId: number, id: number) {
+    return this._http.post(this.baseUrl + 'users/' + userId + '/photos/' + id + '/setMain', {})
+      .catch(this.handleError);
+  }
+
+  deletePhoto(userId: number, id: number) {
+    return this._http.delete(this.baseUrl + 'users/' + userId + '/photos/' + id)
+      .catch(this.handleError);
+  }
+
+
   private jwt() {
     const token = localStorage.getItem('token');
     if (token) {

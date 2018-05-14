@@ -38,13 +38,16 @@ export class AuthService {
           this.decodedToken = this.jwtHelper.decodeToken(user.tokenString);
           this.currentUser = user.user;
           this.userToken = user.tokenString;
-          this.changeMemberPhoto(this.currentUser.photoUrl);
+          if (this.currentUser.photoUrl !== null)
+            this.changeMemberPhoto(this.currentUser.photoUrl);
+          else
+            this.changeMemberPhoto('../../assets/user.png');
       }).catch(this.handleError);
   }
 
-  httpRegister(model: any) {
+  httpRegister(user: User) {
     return this._http
-    .post(this.baseUrl + 'register', model)
+    .post(this.baseUrl + 'register', user)
     .catch(this.handleError);
   }
 

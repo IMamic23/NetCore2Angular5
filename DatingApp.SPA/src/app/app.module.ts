@@ -18,7 +18,7 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
-import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule } from 'ngx-bootstrap';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -62,6 +62,7 @@ export function tokenGetter() {
     BsDatepickerModule.forRoot(),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
+    PaginationModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

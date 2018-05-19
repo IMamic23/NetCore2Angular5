@@ -19,12 +19,19 @@ export class UserService {
     private _http: HttpClient
   ) { }
 
-  getUsers(page?: number, itemsPerPage?: number) {
+  getUsers(page?: number, itemsPerPage?: number, userParams?: any) {
     const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
     let queryString = '?';
 
     if (page !== null && itemsPerPage !== null)
-      queryString += 'pageNumber=' + page + '&pageSize=' + itemsPerPage;
+      queryString += 'pageNumber=' + page + '&pageSize=' + itemsPerPage + '&';
+
+    if (userParams !== null)
+      queryString +=
+      'minAge=' + userParams.minAge +
+      '&maxAge=' + userParams.maxAge +
+      '&gender=' + userParams.gender +
+      '&orderBy=' + userParams.orderBy;
 
     return this._http.get(this.baseUrl + 'users' + queryString)
       .map((response: Response) =>  {

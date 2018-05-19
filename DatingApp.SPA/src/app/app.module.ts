@@ -31,6 +31,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -63,6 +64,7 @@ export function tokenGetter() {
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
